@@ -75,3 +75,12 @@ test-backend-nodejs % yarn dev
     - Route to delete a product: ```{
       title: 'Product'
     }```
+
+  - ```/products/update``` POST
+    - Bearer Token will be required
+    - Route to update product: ```{
+      title: 'Product',
+      description: 'New Product Description',
+      category: 'New Product Category',
+      price: 40
+    }```
