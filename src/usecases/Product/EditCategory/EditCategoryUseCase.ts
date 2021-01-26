@@ -8,7 +8,7 @@ export class EditCategoryUseCase {
   ) {}
 
   async execute (data: IEditProductDTO) {
-    const categoryExists = await this.productsRepository.findByCategory(data.userId, data.category)
+    const categoryExists = await this.productsRepository.findOneByCategory(data.userId, data.category)
     if (!categoryExists) {
       throw new Error('Category does not exist.')
     }
