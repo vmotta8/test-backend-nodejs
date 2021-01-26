@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import AuthMiddleware from './middlewares/AuthMiddleware'
-import { addProductController, editCategoryController, showAllController, showByTitleController } from './usecases/Product'
+import { addProductController, editCategoryController, showAllController, showByCategoryController, showByTitleController } from './usecases/Product'
 import { authenticationController, createUserController } from './usecases/User'
 
 const router = Router()
@@ -27,6 +27,10 @@ router.get('/products/show-all', AuthMiddleware, (req, res) => {
 
 router.get('/products/show-title', AuthMiddleware, (req, res) => {
   return showByTitleController.handle(req, res)
+})
+
+router.get('/products/show-category', AuthMiddleware, (req, res) => {
+  return showByCategoryController.handle(req, res)
 })
 
 export { router }

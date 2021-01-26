@@ -1,4 +1,5 @@
 export * from './ShowAll'
 export * from './ShowByTitle'
+export * from './ShowByCategory'
 export * from './EditCategory'
 export * from './AddProduct'
