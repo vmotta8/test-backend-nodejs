@@ -1,5 +1,7 @@
 # Backend Analyst Candidate Testing at Anota Ai
 
+#### This branch contains the API code that I managed to develop in approximately 5 hours 
+
 ## Setup
 
 Complete the .env file
