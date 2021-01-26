@@ -41,26 +41,22 @@ describe('add product use case', () => {
   })
 
   it('should pass if the user id is different', async () => {
-    try {
-      await TESTAddProductUseCase.execute({
-        title: 'Bola',
-        description: 'Bola de futebol',
-        category: 'Esporte',
-        price: 40,
-        userId: '123456'
-      })
+    const result1 = await TESTAddProductUseCase.execute({
+      title: 'Bola',
+      description: 'Bola de futebol',
+      category: 'Esporte',
+      price: 40,
+      userId: '12'
+    })
 
-      await TESTAddProductUseCase.execute({
-        title: 'Bola',
-        description: 'Bola de futebol',
-        category: 'Esporte',
-        price: 40,
-        userId: '12345678'
-      })
+    const result2 = await TESTAddProductUseCase.execute({
+      title: 'Bola',
+      description: 'Bola de futebol',
+      category: 'Esporte',
+      price: 40,
+      userId: '1234'
+    })
 
-      expect(1).toBe(1)
-    } catch (error) {
-      expect(error.message).toEqual('')
-    }
+    expect(result1.title).toBe(result2.title)
   })
 })
