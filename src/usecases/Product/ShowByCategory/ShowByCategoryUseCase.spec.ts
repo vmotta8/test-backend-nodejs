@@ -16,7 +16,7 @@ afterAll(async () => {
   await database.disconnect()
 })
 
-describe('show by title use case', () => {
+describe('show by category use case', () => {
   it('should return an object on success', async () => {
     await TESTAddProductUseCase.execute({
       title: 'Bola',
