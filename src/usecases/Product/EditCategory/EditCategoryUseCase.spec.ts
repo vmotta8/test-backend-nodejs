@@ -16,7 +16,7 @@ afterAll(async () => {
   await database.disconnect()
 })
 
-describe('add product use case', () => {
+describe('edit product use case', () => {
   it('should return an error if the category does not exist', async () => {
     try {
       await TESTAddProductUseCase.execute({
