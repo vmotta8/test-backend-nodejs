@@ -11,7 +11,7 @@ export class AddProductUseCase {
   async execute (data: IAddProductDTO) {
     const product = new Product(data)
 
-    const titleExists = await this.productsRepository.findByTitle(product.userId, product.title)
+    const titleExists = await this.productsRepository.findOneByTitle(product.userId, product.title)
     if (titleExists) {
       throw new Error('Title already exists.')
     }
