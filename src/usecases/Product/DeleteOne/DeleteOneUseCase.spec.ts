@@ -2,6 +2,7 @@ import envs from '@/configs/envs.config'
 import { database } from '@/database'
 import { TESTShowByTitleUseCase } from '@/usecases/Product/ShowByTitle'
 import { TESTAddProductUseCase } from '@/usecases/Product/AddProduct'
+import { TESTDeleteOneUseCase } from '.'
 
 beforeAll(async () => {
   await database.connect(envs.MONGO_URL_TEST)
@@ -16,21 +17,30 @@ afterAll(async () => {
   await database.disconnect()
 })
 
-describe('show by title use case', () => {
-  it('should return an object on success', async () => {
-    await TESTAddProductUseCase.execute({
-      title: 'Bola',
-      description: 'Bola de futebol',
-      category: 'Esporte',
-      price: 40,
-      userId: '123456'
-    })
+describe('delete one use case', () => {
+  it('should return an error if title does not exist', async () => {
+    try {
+      await TESTAddProductUseCase.execute({
+        title: 'Bola',
+        description: 'Bola de futebol',
+        category: 'Esporte',
+        price: 40,
+        userId: '123456'
+      })
 
-    const result = await TESTShowByTitleUseCase.execute({
-      title: 'Bola',
-      userId: '123456'
-    })
+      await TESTDeleteOneUseCase.execute({
+        title: 'Bola',
+        userId: '123456'
+      })
 
-    expect(result.category).toBe('Esporte')
+      await TESTShowByTitleUseCase.execute({
+        title: 'Bola',
+        userId: '123456'
+      })
+
+      expect(1).toBe(0)
+    } catch (error) {
+      expect(error.message).toBe('Title does not exist.')
+    }
   })
 })
