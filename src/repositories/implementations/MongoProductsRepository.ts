@@ -9,6 +9,12 @@ export class MongoProductsRepository implements IProductsRepository {
     await productCollection.insertOne(product)
   }
 
+  async deleteOneByTitle (userId: string, title: string): Promise<void> {
+    const productCollection = database.getCollection('products')
+
+    await productCollection.deleteOne({ title: title, userId: userId })
+  }
+
   async findOneByTitle (userId: string, title: string): Promise<Product> {
     const productCollection = database.getCollection('products')
     const result = await productCollection.findOne({ title: title, userId: userId })
