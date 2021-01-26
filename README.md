@@ -69,3 +69,9 @@ test-backend-nodejs % yarn dev
     - Route to show all products in this category: ```{
       category: 'Product Category'
     }```
+
+  - ```/products/delete``` POST
+    - Bearer Token will be required
+    - Route to delete a product: ```{
+      title: 'Product'
+    }```
